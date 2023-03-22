@@ -39,3 +39,14 @@ class termo:
     def __init__(self, lista, N):
 
 con esto fue posible realizar condiciones cada que el usuario usara un arreglo (pv,pt, vt).
+
+
+luego de usar las lista se uso 'matri' en lugar de lista en el constructor de la clase termodinamica, con el fin de formar una matriz que recibiera los datos de P, V, T correspondientes, esto con el fin de efectuar las operaciones:
+
+- calculo de temperatura
+- calculo de presion
+- calculo de volumen
+
+en esta se agrego la funcion __getitem__ para aceder a un objeto específico 
+ de la matriz, tambien se agrego una funcion  __iso__ que permite saber para 
+ dos filas, que variables se mantienen constantes o no.
