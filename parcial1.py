@@ -14,12 +14,23 @@ p*v = N*K_B*T =  n*R*T donde n es las moles de sustancia
 '''
 
 class termo:
-    def __init__(self, P, V, T, N):
+    def __init__(self, lista, N):
         self.N = N
-        self.V = V
-        self.P = P
-        self.T = T
         self.k_b = float(1.38 * 10 **-23)
+        if len(lista) == 3 and lista[2].lower() == 'pv':
+            self.P = lista[0]
+            self.V = lista[1]
+            self.T = self.obtener_temperatura()
+        
+        elif len(lista) == 3 and lista[2].lower == 'pt':
+            self.P = lista[0]
+            self.T = lista[1]
+            self.V = self.obtener_volumen()
+
+        elif len(lista) == 3 and lista[2].lower == 'vt':
+            self.V = lista[0]
+            self.T = lista[1]
+            self.P= self.obtener_presion()
 
     def obtener_temperatura(self):
         return (self.P * self.V)/ (self.N * self.k_b)
@@ -29,20 +40,26 @@ class termo:
     
     def obtener_volumen(self):
         return (self.N * self.k_b * self.T) / self.P
-    
-print('en caso de no tener una variable escribin <0>, minimo ingresar dos variables.')
-a = float(input('Presion: ' ))
-b = float(input('Volumen: '))
-c = float(input('Temperatura: '))
-d = float (input('numero de moles de sustancia: '))
 
-arreglo_termod = termo(a, b, c, d)
+a = input('Escriba un arreglo pv, pt, vt: ').lower()
+b = float(input('valor de la primera variable de estado: '))
+c = float(input('valor de la segunda variable de estado: '))
 
-if a==0:
-    print('la presion a partir de la ecuacion de gas ideal es:', arreglo_termod.obtener_presion())
-elif b==0:
-    print('el volumen a partir de la ecuacion de gas ideal es:', arreglo_termod.obtener_volumen())
-elif c==0:
-    print('la temperatura1 a partir de la ecuacion de gas ideal es:', arreglo_termod.obtener_temperatura())
+termodinamica = [ b, c, a]
+print(termodinamica)
 
-'como fue'
+N = float(input('numero de particulas de la sustancia: '))
+
+sistem = termo(termodinamica, N)
+
+if  a== 'pv':
+    temperatura = sistem.obtener_temperatura()
+    print('la temperatura es:', temperatura)
+
+if a == 'pt':
+    volumen = sistem.obtener_volumen()
+    print('El volumen es:', volumen)
+
+if a == 'vt':
+    presion = sistem.obtener_presion()
+    print('La presión es:', presion)
