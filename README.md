@@ -22,3 +22,4 @@ se dice que se tiene un proceso termodinámico particular. Los más importantes 
 
     3. Método que reciba dos números enteros ny m entre 0 y 3 y diga si de nam se tiene un proceso isobárico (La presión no cambia), isocoro (El volumen no cambia), 
     isotermo (La temperatura no cambia), adiabático (la cantidad {k_b N ln(V_m/V_n)  +  3 k_b N ln(T_m/T_n)  =  0  }), o ninguno de los anteriores.
+    
