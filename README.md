@@ -22,4 +22,20 @@ se dice que se tiene un proceso termodinámico particular. Los más importantes 
 
     3. Método que reciba dos números enteros ny m entre 0 y 3 y diga si de nam se tiene un proceso isobárico (La presión no cambia), isocoro (El volumen no cambia), 
     isotermo (La temperatura no cambia), adiabático (la cantidad {k_b N ln(V_m/V_n)  +  3 k_b N ln(T_m/T_n)  =  0  }), o ninguno de los anteriores.
-    
+
+primero para tener nocion de lo que se iba a hacer se uso:
+
+class termo:
+    def __init__(self, P, V, T, N):
+
+Esto para hacer de forma gradual un programa mas tecnico y apto para el calculo de la variable
+de estado faltante.
+
+posteriormente se pretende crear una clase que use el numero de particulas y una lista con parametros *pv*, *pt* o *vt*
+
+ahora se redefinen los parametros que definen la clase de forma que ahora todo queda en un lista de forma tal que esta lista tiene a (P, V, T)
+
+class termo:
+    def __init__(self, lista, N):
+
+con esto fue posible realizar condiciones cada que el usuario usara un arreglo (pv,pt, vt).
