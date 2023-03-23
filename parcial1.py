@@ -1,7 +1,11 @@
+'''
+PV= N K_b T = (n*N_a) k_b T, donde n es la cantidad de moles de sustancia.
+'''
 class termo:
     def __init__(self, matri, N):
         self.N = N
         self.k_b = float(1.38 * 10 **-23)
+
         if matri[0][2].lower() == 'pv':
             self.P = matri[0][0]
             self.V = matri[0][1]
@@ -18,13 +22,13 @@ class termo:
             self.P= self.obtener_presion()
 
     def obtener_temperatura(self):
-        return (self.P * self.V)/ (self.N * self.k_b)
+        return (self.P * self.V/ (self.N * self.k_b))
     
     def obtener_presion(self):
-        return (self.N * self.k_b * self.T) / (self.V)
+        return ((self.N * self.k_b * self.T )/ self.V)
     
     def obtener_volumen(self):
-        return (self.N * self.k_b * self.T) / (self.P)
+        return ((self.N * self.k_b * self.T) / self.P)
 
 
 class Matriz:
@@ -115,10 +119,14 @@ class Matriz:
                 respuesta = 'hay un proceso isocorico'
                 return respuesta
 
+
+
             else:
                 respuesta = 'no hay una transicion de estado con variables contantes.'
                 return respuesta
-            
+
+
+N_a = 6*10**-23
 
 print('ingrese las listas PV, PT, VT con sus datos correspondientes')
 datos = input('que datos va a ingresar? PV, PT, VT: ')
@@ -131,7 +139,10 @@ if datos == 'pv':
     PV = [[b, c, a], [b, c, a], [b, c, a]]
     print(PV[0])  
 
-    p_v = termo(PV, N = 6*10**-23)
+
+    n=float(input('ingrese una cantidad de moles de sustancia: '))
+    u = n*N_a
+    p_v = termo(PV, u)
     t = p_v.obtener_temperatura()
     print('la temperatura es: ', t)
 
@@ -145,9 +156,11 @@ if datos == 'pv':
         PT = [[e, f, d], [e, f, d], [e, f, d]]
         print(PT[1])
 
-        p_t = termo(PT, N = 6*10**-23)
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_t = termo(PT, u)
         v = p_t.obtener_volumen()
-        print('el volumen es: ', v)
+        print('el volumen es: ', v, 'Para N = 6*10**-23')
 
 
         print('ingrese los datos de VT')
@@ -157,7 +170,9 @@ if datos == 'pv':
         VT = [[h, i, g], [h, i, g], [h, i, g]]
         print(VT[2])
 
-        v_t = termo(VT,  N = 6*10**-23)
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        v_t = termo(VT, u)
         p = v_t.obtener_presion()
         print('la presion es: ', p)
 
@@ -185,7 +200,11 @@ if datos == 'pv':
         VT = [[h, i, g], [h, i, g], [h, i, g]]
         print(VT[2])
 
-        v_t = termo(VT,  N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+
+        v_t = termo(VT, u)
         p = v_t.obtener_presion()
         print('la presion es: ', p)
 
@@ -198,7 +217,10 @@ if datos == 'pv':
         PT = [[e, f, d], [e, f, d], [e, f, d]]
         print(PT[1])
 
-        p_t = termo(PT, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_t = termo(PT, u)
         v = p_t.obtener_volumen()
         print('el volumen es: ', v)
 
@@ -228,7 +250,10 @@ elif datos == 'pt':
     PT = [[e, f, d], [e, f, d], [e, f, d]]
     print(PT[1])
 
-    p_t = termo(PT, N = 6*10**-23)
+
+    n=float(input('ingrese una cantidad de moles de sustancia: '))
+    u = n*N_a
+    p_t = termo(PT, u)
     v = p_t.obtener_volumen()
     print('el volumen es: ', v)
 
@@ -241,7 +266,10 @@ elif datos == 'pt':
         PV = [[b, c, a], [b, c, a], [b, c, a]]
         print(PV[0])  
 
-        p_v = termo(PV, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_v = termo(PV, u)
         t = p_v.obtener_temperatura()
         print('la temperatura es: ', t)
 
@@ -254,7 +282,10 @@ elif datos == 'pt':
         VT = [[h, i, g], [h, i, g], [h, i, g]]
         print(VT[2])
 
-        v_t = termo(VT,  N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        v_t = termo(VT, u)
         p = v_t.obtener_presion()
         print('la presion es: ', p)
 
@@ -283,7 +314,10 @@ elif datos == 'pt':
         VT = [[h, i, g], [h, i, g], [h, i, g]]
         print(VT[2])
 
-        v_t = termo(VT,  N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        v_t = termo(VT, u)
         p = v_t.obtener_presion()
         print('la presion es: ', p)
 
@@ -296,7 +330,11 @@ elif datos == 'pt':
         PV = [[b, c, a], [b, c, a], [b, c, a]]
         print(PV[0])  
 
-        p_v = termo(PV, N = 6*10**-23)
+
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_v = termo(PV, u)
         t = p_v.obtener_temperatura()
         print('la temperatura es: ', t)
 
@@ -326,7 +364,10 @@ elif datos == 'vt':
     VT = [[h, i, g], [h, i, g], [h, i, g]]
     print(VT[2])
 
-    v_t = termo(VT,  N = 6*10**-23)
+
+    n=float(input('ingrese una cantidad de moles de sustancia: '))
+    u = n*N_a
+    v_t = termo(VT, u)
     p = v_t.obtener_presion()
     print('la presion es: ', p)
 
@@ -339,7 +380,10 @@ elif datos == 'vt':
         PV = [[b, c, a], [b, c, a], [b, c, a]]
         print(PV[0])  
 
-        p_v = termo(PV, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_v = termo(PV, u)
         t = p_v.obtener_temperatura()
         print('la temperatura es: ', t)
 
@@ -352,7 +396,10 @@ elif datos == 'vt':
         PT = [[e, f, d], [e, f, d], [e, f, d]]
         print(PT[1])
 
-        p_t = termo(PT, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_t = termo(PT, u)
         v = p_t.obtener_volumen()
         print('el volumen es: ', v)
 
@@ -382,7 +429,10 @@ elif datos == 'vt':
         PT = [[e, f, d], [e, f, d], [e, f, d]]
         print(PT[1])
 
-        p_t = termo(PT, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_t = termo(PT, u)
         v = p_t.obtener_volumen()
         print('el volumen es: ', v)
 
@@ -395,7 +445,10 @@ elif datos == 'vt':
         PV = [[b, c, a], [b, c, a], [b, c, a]]
         print(PV[0])  
 
-        p_v = termo(PV, N = 6*10**-23)
+
+        n=float(input('ingrese una cantidad de moles de sustancia: '))
+        u = n*N_a
+        p_v = termo(PV, u)
         t = p_v.obtener_temperatura()
         print('la temperatura es: ', t)
 
