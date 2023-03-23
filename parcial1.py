@@ -53,23 +53,25 @@ class Matriz:
 
     def iesima(self, i, j):
         if i == 0 and j==0:
-            return ('la entrada corresponde la presion ', self.a00, ' la temperatura es ', self.a01, ' el volumen es ', self.a02)
+            return ('la entrada corresponde la presion ', self.a00, ' la temperatura es ', self.a02, ' el volumen es ', self.a01)
         elif i == 0 and j == 1:
-            return ('la entrada corresponde la temperatura ', self.a01, ' la presion es ', self.a00, ' el volumen es ', self.a02)
+            return ('la entrada corresponde al volumen ', self.a01, ' la presion es ', self.a00, ' la temperatura es ', self.a02)
         elif i == 0 and j == 2:
-            return('la entrada corresponde al volumen ', self.a02, ' la temperatura es ', self.a01, ' la presion es ', self.a00)
+            return('la entrada corresponde la temperatura ', self.a02, ' el volumen es ', self.a01, ' la presion es ', self.a00)
+        
         elif i == 1 and j == 0:
-            return('la entrada corresponde la presion ', self.a10, ' la temperatura es ', self.a11, ' el volumen es ', self.a12)
+            return('la entrada corresponde la presion ', self.a10, ' la temperatura es ', self.a12, ' el volumen es ', self.a11)
         elif i == 1 and j == 1:
-            return('la entrada corresponde la temperatura ', self.a11, ' la presion es ', self.a10, ' el volumen es ', self.a12)
+            return('la entrada corresponde la temperatura ', self.a12, ' la presion es ', self.a10, ' el volumen es ', self.a11)
         elif i == 1 and j == 2:
-            return('la entrada corresponde al volumen ', self.a12, ' la temperatura es ', self.a11, ' la presion es ', self.a10)
+            return('la entrada corresponde al volumen ', self.a11, ' la temperatura es ', self.a12, ' la presion es ', self.a10)
+        
         elif i == 2 and j == 0:
-            return('la entrada corresponde la presion ', self.a20, ' la temperatura es ', self.a21, ' el volumen es ', self.a22)
+            return('la entrada corresponde la presion ', self.a20, ' la temperatura es ', self.a22, ' el volumen es ', self.a21)
         elif i == 2 and j == 1:
-            return('la entrada corresponde la temperatura ', self.a21, ' la presion es ', self.a20, ' el volumen es ', self.a22)
+            return('la entrada corresponde la temperatura ', self.a22, ' la presion es ', self.a20, ' el volumen es ', self.a21)
         elif i == 2 and j == 2:
-            return('la entrada corresponde al volumen ', self.a12, ' la temperatura es ', self.a11, ' la presion es ', self.a10)
+            return('la entrada corresponde al volumen ', self.a11, ' la temperatura es ', self.a12, ' la presion es ', self.a10)
 
         else:
             return None
