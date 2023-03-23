@@ -28,7 +28,7 @@ class termo:
 
 
 class Matriz:
-    def __init__(self, lista):
+    def __init__(self, lista, n, m):
         self.a00=lista[0][0]
         self.a01=lista[0][1]
         self.a02=lista[0][2]
@@ -41,33 +41,84 @@ class Matriz:
         self.a21=lista[2][1]
         self.a22=lista[2][2]
         self.a23=lista[2][3]
-
+        self.n=n
+        self.m=m 
 
     def __str__(self):
         return ("|{:^5} {:^5} {:^5} {:^5}|\n|{:^5} {:^5} {:^5} {:^5}|\n|{:^5} {:^5} {:^5} {:^5}|".format(self.a00, self.a01, self.a02, self.a03, self.a10, self.a11, self.a12, self.a13, self.a20, self.a21, self.a22, self.a23))
 
-    def __getitem__(self, index):
-        if isinstance(index, tuple):
-            i, j = index
-            return getattr(self, f"a{str(i)}{str(j)}")
-
-    def iso(self):
-        if self.a00 == self.a10 or self.a10 == self.a20 or self.a00 == self.a20:
-            respuesta = 'hay un proceso isobarico'
-            return respuesta
-        
-        elif self.a01 == self.a11 or self.a11 == self.a21 or self.a01 == self.a21:
-            respuesta = 'hay un proceso isocorico'
-        
-        elif self.a02 == self.a12 or self.a12 == self.a22 or self.a02 == self.a22:
-            respuesta = 'hay un proceso isocorico'
-            return respuesta
+    def iesima(self, i, j):
+        if i == 0 and j==0:
+            return ('la entrada corresponde la presion ', self.a00, ' la temperatura es ', self.a01, ' el volumen es ', self.a02)
+        elif i == 0 and j == 1:
+            return ('la entrada corresponde la temperatura ', self.a01, ' la presion es ', self.a00, ' el volumen es ', self.a02)
+        elif i == 0 and j == 2:
+            return('la entrada corresponde al volumen ', self.a02, ' la temperatura es ', self.a01, ' la presion es ', self.a00)
+        elif i == 1 and j == 0:
+            return('la entrada corresponde la presion ', self.a10, ' la temperatura es ', self.a11, ' el volumen es ', self.a12)
+        elif i == 1 and j == 1:
+            return('la entrada corresponde la temperatura ', self.a11, ' la presion es ', self.a10, ' el volumen es ', self.a12)
+        elif i == 1 and j == 2:
+            return('la entrada corresponde al volumen ', self.a12, ' la temperatura es ', self.a11, ' la presion es ', self.a10)
+        elif i == 2 and j == 0:
+            return('la entrada corresponde la presion ', self.a20, ' la temperatura es ', self.a21, ' el volumen es ', self.a22)
+        elif i == 2 and j == 1:
+            return('la entrada corresponde la temperatura ', self.a21, ' la presion es ', self.a20, ' el volumen es ', self.a22)
+        elif i == 2 and j == 2:
+            return('la entrada corresponde al volumen ', self.a12, ' la temperatura es ', self.a11, ' la presion es ', self.a10)
 
         else:
-            respuesta = 'no hay una transicion de estado con variables contantes.'
-            return respuesta
+            return None
 
+    def iso(self, n, m):
+        if n == 1 and m == 0 or n==0 and m == 1:
+            if self.a00 == self.a10:
+                respuesta = 'hay un proceso isobarico'
+                return respuesta
+            
+            elif self.a01 == self.a11:
+                respuesta = 'hay un proceso isocorico'
+            
+            elif self.a02 == self.a12:
+                respuesta = 'hay un proceso isocorico'
+                return respuesta
 
+            else:
+                respuesta = 'no hay una transicion de estado con variables contantes.'
+                return respuesta
+        
+        elif n == 0 and m == 2 or n == 2 and m == 0:
+            if self.a00 == self.a20:
+                respuesta = 'hay un proceso isobarico'
+                return respuesta
+            
+            elif self.a01 == self.a21:
+                respuesta = 'hay un proceso isocorico'
+            
+            elif self.a02 == self.a22:
+                respuesta = 'hay un proceso isocorico'
+                return respuesta
+
+            else:
+                respuesta = 'no hay una transicion de estado con variables contantes.'
+                return respuesta
+
+        elif n == 1 and m == 2 or n == 2 and m == 1:
+            if self.a10 == self.a20:
+                respuesta = 'hay un proceso isobarico'
+                return respuesta
+            
+            elif self.a11 == self.a21:
+                respuesta = 'hay un proceso isocorico'
+            
+            elif self.a12 == self.a22:
+                respuesta = 'hay un proceso isocorico'
+                return respuesta
+
+            else:
+                respuesta = 'no hay una transicion de estado con variables contantes.'
+                return respuesta
+            
 
 print('ingrese las listas PV, PT, VT con sus datos correspondientes')
 datos = input('que datos va a ingresar? PV, PT, VT: ')
@@ -111,13 +162,17 @@ if datos == 'pv':
         print('la presion es: ', p)
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista=sistemas)
-        print(sist)
+        sist = Matriz(lista=sistemas, n=3, m=4)
+        print(sist)   
 
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a, m=b)
 
         print(peguelo)
 
@@ -148,13 +203,17 @@ if datos == 'pv':
         print('el volumen es: ', v)
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas,  n=3, m=4)
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         print(sist)
 
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a,m=b)
 
         print(peguelo)
 
@@ -201,13 +260,17 @@ elif datos == 'pt':
 
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista=sistemas)
+        sist = Matriz(lista=sistemas, n=3, m=4)
         print(sist)
 
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a,m=b)
 
         print(peguelo)
 
@@ -238,16 +301,19 @@ elif datos == 'pt':
         print('la temperatura es: ', t)
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista=sistemas)
+        sist = Matriz(lista=sistemas, n=3, m=4)
         print(sist)
 
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a,m=b)
 
         print(peguelo)
-
     else:
         print('error, su respuesta no concuerda')
 
@@ -292,13 +358,17 @@ elif datos == 'vt':
 
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista=sistemas)
+        sist = Matriz(lista=sistemas, n=3, m=4)
         print(sist)
         
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a,m=b)
 
         print(peguelo)
 
@@ -330,18 +400,36 @@ elif datos == 'vt':
         print('la temperatura es: ', t)
 
         sistemas = [[b, c, t, "PVT"], [e, f, v, 'PTV'], [h, i, p, 'VTP']]
-        sist = Matriz(lista = sistemas)
+        sist = Matriz(lista = sistemas, n=3, m=4)
         
         
         sistemas = [[b, c, t, "PVT"], [e, v, f, 'PVT'], [p, h, i, 'PVT']]
-        sist = Matriz(lista=sistemas)
+        sist = Matriz(lista=sistemas, n=3, m=4)
         print(sist)
         
-        peguelo = sist.iso()
+        print('las filas corresponden a diferentes sistemas o estados, que estados desea comparar?')
+
+        a=int(input('primer estado: '))
+        b=int(input('segundo estado: '))
+        peguelo = sist.iso(n=a,m=b)
 
         print(peguelo)
+
     else:
         print('error, su respuesta no concuerda')
+
+
 else:
     print('no corresponde con ningun par de variables de estado de la ecuacion de gas ideal. >:c')
-            
+
+
+print('que elementos de la matriz quieres que imprima? \n el estado y variable van de 0 a 2 ')
+
+s = float(input('estado: '))
+d = float(input('variable: '))
+
+enesima = sist.iesima(i=s,j=d)
+
+print(enesima)
+
+

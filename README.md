@@ -149,5 +149,32 @@ Antes de usar un método __iso__ se uso:
         elif sist[n, m] != sist[n1, m]:
             print('del estado ', n, ' al estado ', n1, ' no hubo un proceso en el cual alguna variable de estado termodinamica se mantuviera constante.')
 
-esta parte del codigo no es un método, sin embargo permite saber que pasa si dos determinados elementos de la matriz son iguales que proceso iso hay (isocorico, isobarico, isotermico).
+esta parte del codigo no es un método, sin embargo permite saber que pasa si dos
+determinados elementos de la matriz son iguales que proceso iso hay (isocorico,
+isobarico, isotermico).
+
+para acceder a una fila especifico de la matriz no se uno un getitem, se uso un
+metodo __iesima__ para que se imprima una fila de la columna con su respectiva cadena
+que especifica que significa cada elemento:
+
+
+	def iesima(self, i, j):
+			if i == 0 and j==0:
+				return ('la entrada corresponde la presion ', self.a00, ' la temperatura es ', self.a01, ' el volumen es ', self.a02)
+	...
+
+Los problemas  con este codigo se presentaron debido a que  hay tres configuraciones 
+*PV, PT, VT*, al escoges que se va a ingresar un aconfiguracion, quedan dos
+configuraciones mas que se escoja primero una de las dos restantes o que se escoja
+primero la otra, lo que indica que hay muchas posibilidades a la hora de escojer el orden
+ en el que se van a ingresar los datos la matriz, lo que se puede solucionar de forma
+ manual alargando el codigo o usando ciclos, sin embargo por cuestiones de tiempo no
+ se realizo de esta segunda forma.
+
+
+
+
+
+
+
 
