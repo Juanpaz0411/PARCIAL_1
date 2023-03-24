@@ -2,7 +2,7 @@
 
 ------------
 
-<h1 align="center"># PARCIAL 1 DE PROGRAMACIÓN😒</h1>
+<h1 align="center"> PARCIAL 1 DE PROGRAMACIÓN😒</h1>
 
 ------------
 ##### Hecho por: *Juan jose paz hormiga*
