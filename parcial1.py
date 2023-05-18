@@ -389,8 +389,6 @@ elif datos == 'vt':
         t = p_v.obtener_temperatura()
         print('la temperatura es: ', t)
 
-
-
         print('ingrese los datos de PT')
         d ="PT"
         e = float(input('el valor de P es: '))
@@ -486,5 +484,3 @@ d = float(input('variable: '))
 enesima = sist.iesima(i=s,j=d)
 
 print(enesima)
-
-

@@ -1,12 +1,10 @@
-
-
 ------------
 
 <h1 align="center"> PARCIAL 1 DE PROGRAMACIÓN😒</h1>
 
 ------------
 ##### Hecho por: *Juan jose paz hormiga*
-
+Hello.
 Estudiante G: En termodinámica las variables de presión (P), temperatura (T), volumen (V),
 número de particulas (N) y constante de Boltzman (ks) se relacionan (para gas ideal) por:
 PV=NkT. Dependiendo de como cambien estas variables
